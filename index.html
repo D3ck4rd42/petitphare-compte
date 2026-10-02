@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supprimer votre compte · Petit Phare</title>
+  <meta name="description" content="Supprimer le compte famille de Scoriki, Minuki et QuestTrail, et toutes les données de la famille sur le serveur.">
+  <style>
+    :root { --encre: #1d1a2e; --papier: #fdf8ef; --carte: #ffffff; --trait: #e6dccb; --accent: #f2b632; --danger: #b3261e; --doux: #5b5670; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--papier); color: var(--encre); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 38rem; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+    .marque { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; color: var(--doux); }
+    h1 { font-size: 1.9rem; line-height: 1.2; margin: .3rem 0 1rem; }
+    h2 { font-size: 1.15rem; margin: 0 0 .6rem; }
+    p { margin: 0 0 .9rem; }
+    ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+    .carte { background: var(--carte); border: 2px solid var(--encre); border-radius: 18px; padding: 1.3rem 1.2rem; margin: 1.4rem 0; }
+    label { display: block; font-weight: 600; margin-bottom: .35rem; }
+    input { width: 100%; font: inherit; padding: .75rem .9rem; border: 2px solid var(--trait); border-radius: 12px; background: #fff; color: var(--encre); }
+    input:focus { outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--encre); }
+    button { font: inherit; font-weight: 700; margin-top: .9rem; padding: .75rem 1.3rem; border-radius: 999px; border: 2px solid var(--encre); background: var(--accent); color: var(--encre); cursor: pointer; min-height: 48px; }
+    button:disabled { opacity: .55; cursor: progress; }
+    button.danger { background: var(--danger); color: #fff; border-color: var(--danger); }
+    .note { color: var(--doux); font-size: .95rem; }
+    .message { margin-top: .9rem; font-weight: 600; }
+    .message.erreur { color: var(--danger); }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="marque">Petit Phare</div>
+  <h1>Supprimer votre compte famille</h1>
+  <p>Ce compte sert à sauvegarder et synchroniser les apps <strong>Scoriki</strong>, <strong>Minuki</strong> et <strong>QuestTrail</strong>. Vous pouvez le supprimer ici, sans avoir les apps sous la main, ou depuis l'espace parent de n'importe laquelle des trois.</p>
+
+  <div class="carte">
+    <h2>Ce qui est effacé</h2>
+    <ul>
+      <li>votre compte (votre adresse e-mail) ;</li>
+      <li>votre famille : les enfants, leurs missions, points, moments, parcours et réglages enregistrés sur le serveur ;</li>
+      <li>les appareils reliés à la famille, qui ne pourront plus se synchroniser.</li>
+    </ul>
+    <p>L'effacement est immédiat et définitif sur le serveur. Les copies de sauvegarde du serveur disparaissent d'elles-mêmes sous 30 jours au plus. Si un autre parent partage la famille, seul votre compte part : la famille reste à l'autre parent.</p>
+    <p class="note">Ce qui est enregistré sur les téléphones reste sur les téléphones : désinstaller l'app l'efface.</p>
+  </div>
+
+  <form class="carte" id="etape-email" novalidate>
+    <h2>1. Votre adresse</h2>
+    <label for="email">L'adresse e-mail du compte parent</label>
+    <input id="email" type="email" autocomplete="email" inputmode="email" required>
+    <button type="submit">Recevoir un code</button>
+    <p class="message" role="status" aria-live="polite"></p>
+  </form>
+
+  <form class="carte" id="etape-code" novalidate hidden>
+    <h2>2. Le code reçu</h2>
+    <p>Si un compte existe pour cette adresse, un code à 6 chiffres vient d'y être envoyé.</p>
+    <label for="code">Code reçu par e-mail</label>
+    <input id="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" required>
+    <button type="submit">Vérifier le code</button>
+    <p class="message" role="status" aria-live="polite"></p>
+  </form>
+
+  <form class="carte" id="etape-confirmation" novalidate hidden>
+    <h2>3. Confirmer</h2>
+    <p>La suppression ne peut pas être annulée.</p>
+    <button type="submit" class="danger">Supprimer définitivement le compte et les données de la famille</button>
+    <p class="message" role="status" aria-live="polite"></p>
+  </form>
+
+  <div class="carte" id="fin" hidden>
+    <h2>C'est fait</h2>
+    <p class="message" role="status"></p>
+  </div>
+</main>
+<script type="module">
+  import { creerCompte } from "./compte.js";
+  // L'adresse du serveur et sa clé PUBLIQUE (la même que dans les apps) : elle n'ouvre rien seule.
+  const config = window.CONFIG_COMPTE ?? { url: "https://vpavnptacrgbuowrzhzr.supabase.co", anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwYXZucHRhY3JnYnVvd3J6aHpyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA4NjM1NDksImV4cCI6MjEwNjQzOTU0OX0.2Nc4D4zhRmvhRLhSpLLzK4qZfTR-iGaMYAjtNjiVt3k" };
+  const compte = creerCompte(config);
+  let email = "";
+  let jeton = "";
+
+  const etape = (id) => {
+    for (const e of document.querySelectorAll("form, #fin")) e.hidden = e.id !== id;
+    document.querySelector(`#${id} input, #${id} button`)?.focus();
+  };
+  const dire = (form, texte, erreur = false) => {
+    const m = form.querySelector(".message");
+    m.textContent = texte;
+    m.classList.toggle("erreur", erreur);
+  };
+  const soumettre = (id, faire) => {
+    const form = document.getElementById(id);
+    form.addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      const bouton = form.querySelector("button");
+      bouton.disabled = true;
+      dire(form, "");
+      try {
+        await faire(form);
+      } catch (x) {
+        dire(form, x instanceof Error ? x.message : String(x), true);
+      } finally {
+        bouton.disabled = false;
+      }
+    });
+  };
+
+  soumettre("etape-email", async (form) => {
+    email = form.querySelector("#email").value;
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) throw new Error("Cette adresse ne semble pas complète.");
+    await compte.envoyerCode(email);
+    etape("etape-code");
+  });
+  soumettre("etape-code", async (form) => {
+    jeton = await compte.verifier(email, form.querySelector("#code").value);
+    etape("etape-confirmation");
+  });
+  soumettre("etape-confirmation", async () => {
+    const r = await compte.supprimer(jeton);
+    jeton = "";
+    const fin = document.querySelector("#fin .message");
+    fin.textContent = r.familles > 0
+      ? `Votre compte et votre famille ont été effacés du serveur${r.appareils ? `, avec ${r.appareils} appareil${r.appareils > 1 ? "s" : ""} relié${r.appareils > 1 ? "s" : ""}` : ""}.`
+      : "Votre compte a été effacé. La famille reste à l'autre parent.";
+    etape("fin");
+  });
+</script>
+</body>
+</html>
