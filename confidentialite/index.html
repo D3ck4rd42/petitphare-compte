@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Politique de confidentialité · Petit Phare</title>
-  <meta name="description" content="Ce que les apps Scoriki, Minuki et QuestTrail gardent sur le téléphone, ce qui part sur le serveur quand un parent crée un compte famille, et vos droits.">
+  <meta name="description" content="Ce que les apps Scoriki, Minuki et Chroniki gardent sur le téléphone, ce qui part sur le serveur quand un parent crée un compte famille, et vos droits.">
   <style>
     :root { --encre: #1d1a2e; --papier: #fdf8ef; --carte: #ffffff; --doux: #5b5670; --accent: #f2b632; }
     * { box-sizing: border-box; }
@@ -28,7 +28,7 @@
 <main>
   <div class="marque">Petit Phare</div>
   <h1>Politique de confidentialité</h1>
-  <p class="date">Apps Scoriki, Minuki et QuestTrail · mise à jour le 16 octobre 2026</p>
+  <p class="date">Apps Scoriki, Minuki et Chroniki · mise à jour le 13 novembre 2026</p>
 
   <div class="carte">
     <p><strong>En bref.</strong> Sans compte, tout reste sur le téléphone : rien ne part nulle part. Si un parent crée un compte famille, les données des apps sont sauvegardées sur un serveur situé en France, pour les retrouver sur un autre téléphone et les partager entre les appareils de la famille. Pas de publicité, pas de mesure d'audience, aucune donnée vendue ni partagée à des fins commerciales.</p>
@@ -45,19 +45,19 @@
   <ul>
     <li><strong>Le parent</strong> : son adresse e-mail, pour se connecter par un code reçu par e-mail.</li>
     <li><strong>Les enfants</strong> : le prénom ou le pseudo que le parent choisit, et un avatar éventuel. Aucune date de naissance.</li>
-    <li><strong>Scoriki</strong> : les missions, les points gagnés, la boutique de récompenses et les récompenses données.</li>
-    <li><strong>Minuki</strong> : les moments de la journée, les tâches qui les composent, les séances terminées, les choix de l'enfant (compagnon, pion, voix) et les bons livrés.</li>
-    <li><strong>QuestTrail</strong> : la progression de chaque parcours, enregistrée au jour près, sans heure ; les prénoms de l'équipage ; les réglages ; les parcours achetés.</li>
+    <li><strong>Scoriki</strong> : les missions, la boutique de récompenses, les récompenses données, et le grand livre des points : chaque mission cochée, chaque achat et chaque correction, avec son libellé et l'heure où il a eu lieu.</li>
+    <li><strong>Minuki</strong> : les moments de la journée et les tâches qui les composent (le nom de la photo d'une tâche, jamais la photo), les séances terminées avec leur heure de fin, les points gagnés à chaque séance (versés au livre de Scoriki avec le nom du moment et l'heure), les choix de l'enfant (compagnon, pion, voix) et les bons livrés.</li>
+    <li><strong>Chroniki</strong> : la progression de chaque parcours, enregistrée au jour près, sans heure ; les prénoms de l'équipage ; les réglages ; les parcours achetés.</li>
     <li><strong>Les appareils reliés</strong> : l'app concernée, le nom générique de l'appareil (« Téléphone de l'enfant ») et l'enfant auquel chaque appareil est rattaché.</li>
   </ul>
-  <p><strong>Ne partent jamais</strong> : la position du téléphone (QuestTrail se sert du GPS sur le téléphone seulement), les photos prises dans Minuki, les codes parent des apps, et les heures précises auxquelles un enfant joue un parcours.</p>
+  <p><strong>Ne partent jamais</strong> : la position du téléphone (Chroniki se sert du GPS sur le téléphone seulement), les photos prises dans Minuki, les codes parent des apps, et les heures précises auxquelles un enfant joue un parcours.</p>
   <p><strong>Les adresses IP et l'heure des connexions</strong>, que tout serveur voit passer :</p>
   <ul>
     <li>pour se protéger des essais de code en série, le serveur note l'adresse IP de chaque essai de code d'appairage, effacée au bout d'un jour ;</li>
     <li>le service de connexion garde, pour chaque session ouverte, l'adresse IP et le type de navigateur ou d'appareil, effacés avec la session, ainsi qu'un journal des connexions (adresse e-mail, adresse IP), effacé au bout de 30 jours ;</li>
     <li>notre hébergeur, Supabase, garde des journaux techniques des appels au serveur, adresse IP comprise, pendant 7 jours au plus.</li>
   </ul>
-  <p>Ces traces sont datées à l'heure : elles disent quand un appareil s'est connecté ou a synchronisé ses données, jamais ce que l'enfant y a fait. Elles ne servent qu'à la sécurité et au bon fonctionnement du service, et s'effacent dans les délais ci-dessus. Les données de jeu, elles, ne gardent que le jour.</p>
+  <p>Ces traces sont datées à l'heure : elles disent quand un appareil s'est connecté ou a synchronisé ses données, jamais ce que l'enfant y a fait. Elles ne servent qu'à la sécurité et au bon fonctionnement du service, et s'effacent dans les délais ci-dessus. Les données de jeu de Chroniki ne gardent que le jour. Celles de Minuki et de Scoriki gardent l'heure, parce que les apps s'en servent : l'ordre des séances, les missions « une fois par jour », les récompenses « une fois par semaine ».</p>
 
   <h2>Pourquoi, et sur quelle base</h2>
   <ul>
@@ -72,10 +72,10 @@
     <tr><td>Supabase</td><td>Base de données et connexion des comptes</td><td>Serveurs à Paris (Union européenne)</td></tr>
     <tr><td>Brevo</td><td>Envoi des e-mails contenant les codes de connexion</td><td>France (Union européenne)</td></tr>
     <tr><td>GitHub Pages</td><td>Hébergement des pages compte.petitphare.fr (aucune donnée de compte n'y est stockée)</td><td>États-Unis ; comme tout hébergeur web, il voit l'adresse IP des visiteurs</td></tr>
-    <tr><td>OVH</td><td>Redirection de l'adresse contact@petitphare.fr</td><td>France (Union européenne)</td></tr>
+    <tr><td>OVH</td><td>Redirection de l'adresse contact@petitphare.fr, et hébergement, sur un serveur en France, de la copie de sauvegarde chiffrée des données des comptes famille, gardée 30 jours au plus</td><td>France (Union européenne)</td></tr>
     <tr><td>Google (Gmail)</td><td>Boîte où arrivent les messages envoyés à contact@petitphare.fr (aucune donnée de compte n'y est stockée)</td><td>Serveurs de Google, possiblement hors de l'Union européenne (États-Unis)</td></tr>
   </table>
-  <p>Si vous demandez un itinéraire dans QuestTrail, l'app ouvre Google Maps ou Plans avec le point de départ du parcours : ce service relève alors de sa propre politique.</p>
+  <p>Si vous demandez un itinéraire dans Chroniki, l'app ouvre Google Maps ou Plans avec le point de départ du parcours : ce service relève alors de sa propre politique.</p>
 
   <h2>Combien de temps</h2>
   <ul>
@@ -96,7 +96,7 @@
   <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL (<a href="https://www.cnil.fr/">cnil.fr</a>).</p>
 
   <h2>Sécurité</h2>
-  <p>Les échanges avec le serveur sont chiffrés (HTTPS). Le serveur ne laisse chaque appareil voir que l'enfant auquel il est rattaché, et chaque famille ne voit qu'elle-même. Les codes de connexion et d'appairage ne servent qu'une fois et expirent en 15 minutes au plus. Supprimer le compte, télécharger les données ou retirer un appareil demande un code e-mail récent.</p>
+  <p>Les échanges avec le serveur sont chiffrés (HTTPS). Le serveur ne laisse chaque appareil voir que l'enfant auquel il est rattaché, et chaque famille ne voit qu'elle-même. Les codes de connexion et d'appairage ne servent qu'une fois et expirent en 15 minutes au plus. Le code qui relie entre elles les apps d'un même téléphone, que personne ne tape, ne sert qu'une fois et expire en 7 jours ; il ne quitte jamais le téléphone. Supprimer le compte, télécharger les données ou retirer un appareil demande une connexion de moins de 10 minutes, confirmée par un code e-mail dans l'app.</p>
 
   <h2>Changements</h2>
   <p>Si cette politique change, la date en haut de la page change aussi. Un changement important sera annoncé dans les apps.</p>
